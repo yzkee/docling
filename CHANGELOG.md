@@ -1,3 +1,14 @@
+## [v2.61.0](https://github.com/docling-project/docling/releases/tag/v2.61.0) - 2025-11-06
+
+### Feature
+
+* **vlm:** Track generated tokens and stop reasons for VLM models ([#2543](https://github.com/docling-project/docling/issues/2543)) ([`6a04e27`](https://github.com/docling-project/docling/commit/6a04e273528691eb22a5708f1270d4c5fa8f5b7c))
+
+### Fix
+
+* Temporarily pin NuExtract to working revision ([#2588](https://github.com/docling-project/docling/issues/2588)) ([`fa92574`](https://github.com/docling-project/docling/commit/fa925741b6dc00c7bd2806c62cb75cb539649c9f))
+* **ocr:** Use PSM integer values directly instead of constructor ([#2578](https://github.com/docling-project/docling/issues/2578)) ([`1a5146a`](https://github.com/docling-project/docling/commit/1a5146abc9dbd4ed9d08da186695fbbcb07814a2))
+
 ## [v2.60.1](https://github.com/docling-project/docling/releases/tag/v2.60.1) - 2025-11-04
 
 ### Fix
