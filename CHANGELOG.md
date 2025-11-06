@@ -1,3 +1,14 @@
+## [v2.61.1](https://github.com/docling-project/docling/releases/tag/v2.61.1) - 2025-11-06
+
+### Fix
+
+* **docx:** Slow table parsing ([#2553](https://github.com/docling-project/docling/issues/2553)) ([`ef623ff`](https://github.com/docling-project/docling/commit/ef623ffceefe40aa237e163b564310ed81296bcf))
+* **html:** Slow table parsing ([#2582](https://github.com/docling-project/docling/issues/2582)) ([`0ba8d5d`](https://github.com/docling-project/docling/commit/0ba8d5d9e325390626268744f289458e91689b4b))
+
+### Documentation
+
+* Make navigation menus collapse and expand ([#2573](https://github.com/docling-project/docling/issues/2573)) ([`8da3d28`](https://github.com/docling-project/docling/commit/8da3d287edd6a65877c147882430422e4373230b))
+
 ## [v2.61.0](https://github.com/docling-project/docling/releases/tag/v2.61.0) - 2025-11-06
 
 ### Feature
