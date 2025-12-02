@@ -1,3 +1,22 @@
+## [v2.64.0](https://github.com/docling-project/docling/releases/tag/v2.64.0) - 2025-12-02
+
+### Feature
+
+* **experimental:** Add experimental TableCropsLayoutModel ([#2669](https://github.com/docling-project/docling/issues/2669)) ([`1344362`](https://github.com/docling-project/docling/commit/134436245a1ebdadbfd8ba3c870f0f3c866f39a7))
+* Factory and plugin-capability for Layout and Table models ([#2637](https://github.com/docling-project/docling/issues/2637)) ([`ad97e52`](https://github.com/docling-project/docling/commit/ad97e5285126388847ba9a219ac73f006c759f09))
+
+### Fix
+
+* InputFormat.IMAGE must have correct pipeline ([#2707](https://github.com/docling-project/docling/issues/2707)) ([`6ef4ffd`](https://github.com/docling-project/docling/commit/6ef4ffd643285a27afccdbc6bda6843c7f8c8d79))
+* Do not consider singleton cells in xlsx as TableItems but rather TextItems ([#2589](https://github.com/docling-project/docling/issues/2589)) ([`54cd6d7`](https://github.com/docling-project/docling/commit/54cd6d7406ee9431d45e8bcd1b0ae53389cfb56c))
+* **docx:** Missing list items after numbered header ([#2665](https://github.com/docling-project/docling/issues/2665)) ([`e580554`](https://github.com/docling-project/docling/commit/e58055465cb3635ff17ee03e0a74126c03c55f49))
+
+### Documentation
+
+* Example on how to apply external OCR as post processing ([#2517](https://github.com/docling-project/docling/issues/2517)) ([`fa21128`](https://github.com/docling-project/docling/commit/fa211281385072b61576ec58dd48025f8e433dcd))
+* More GPU results and improvements in the example docs ([#2674](https://github.com/docling-project/docling/issues/2674)) ([`b75c646`](https://github.com/docling-project/docling/commit/b75c6461f46d1a012d2b2b06b2b4da870786fda3))
+* Fix typo on jobkit page ([#2671](https://github.com/docling-project/docling/issues/2671)) ([`146b4f0`](https://github.com/docling-project/docling/commit/146b4f05351042a446394c16895c73c2f26cad7b))
+
 ## [v2.63.0](https://github.com/docling-project/docling/releases/tag/v2.63.0) - 2025-11-20
 
 ### Feature
