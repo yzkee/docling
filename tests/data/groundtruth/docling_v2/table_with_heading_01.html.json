@@ -1,11 +1,11 @@
 {
   "schema_name": "DoclingDocument",
-  "version": "1.7.0",
-  "name": "table_with_heading",
+  "version": "1.8.0",
+  "name": "table_with_heading_01",
   "origin": {
     "mimetype": "text/html",
     "binary_hash": 5578561753677933781,
-    "filename": "table_with_heading.html"
+    "filename": "table_with_heading_01.html"
   },
   "furniture": {
     "self_ref": "#/furniture",
