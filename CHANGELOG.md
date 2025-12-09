@@ -1,3 +1,14 @@
+## [v2.64.1](https://github.com/docling-project/docling/releases/tag/v2.64.1) - 2025-12-09
+
+### Fix
+
+* Clear word/char cells when force_full_page_ocr is used ([#2738](https://github.com/docling-project/docling/issues/2738)) ([`1df0560`](https://github.com/docling-project/docling/commit/1df0560ec2cafcd95f2240e6188385e1ec117110))
+* Add missing font download in the rapidocr artifacts ([#2735](https://github.com/docling-project/docling/issues/2735)) ([`edbabfc`](https://github.com/docling-project/docling/commit/edbabfcac2fd53345b1a0677e81f206285d58bae))
+* Ensure proper image_scale for generated page images in VLM pipelines ([#2728](https://github.com/docling-project/docling/issues/2728)) ([`609069d`](https://github.com/docling-project/docling/commit/609069d12c128f30fbf5132f017c9b62aed6a762))
+* **html:** Tackle paragraphs with block-level elements ([#2720](https://github.com/docling-project/docling/issues/2720)) ([`d007ba0`](https://github.com/docling-project/docling/commit/d007ba0e6f257fcc4e96aad388512455011b7952))
+* **html:** Prevent hierarchy reset in rich table cells ([#2716](https://github.com/docling-project/docling/issues/2716)) ([`aebe25c`](https://github.com/docling-project/docling/commit/aebe25cf0027efc35c50de36751820c9a62e30ff))
+* **docx:** Parse integrals as n-ary objects without chr element ([#2712](https://github.com/docling-project/docling/issues/2712)) ([`c97715f`](https://github.com/docling-project/docling/commit/c97715f5fd07556306026a1291f3bf1749dcd020))
+
 ## [v2.64.0](https://github.com/docling-project/docling/releases/tag/v2.64.0) - 2025-12-02
 
 ### Feature
