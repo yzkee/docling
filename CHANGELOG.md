@@ -1,3 +1,21 @@
+## [v2.69.0](https://github.com/docling-project/docling/releases/tag/v2.69.0) - 2026-01-20
+
+### Feature
+
+* New picture classifier v2.0 ([#2889](https://github.com/docling-project/docling/issues/2889)) ([`43badc3`](https://github.com/docling-project/docling/commit/43badc3838ccfc98fd28d9d66ffe0811585f90fd))
+* Add classification filters for picture description ([#2836](https://github.com/docling-project/docling/issues/2836)) ([`ac16a26`](https://github.com/docling-project/docling/commit/ac16a26a047ccf5edd88775197ca43d146d00528))
+
+### Fix
+
+* Torch compatibility for xpu ([#2894](https://github.com/docling-project/docling/issues/2894)) ([`00273f6`](https://github.com/docling-project/docling/commit/00273f6574ad2f72f8e8b727833f1e742ab59265))
+* Standardize page_no to 1-based indexing ([#2847](https://github.com/docling-project/docling/issues/2847)) ([`1b4d82d`](https://github.com/docling-project/docling/commit/1b4d82de2d6a7998656ff0a4224a55ad4ed24fbf))
+* Usage of direct logging ([#2884](https://github.com/docling-project/docling/issues/2884)) ([`2fe9def`](https://github.com/docling-project/docling/commit/2fe9def2828735dbeecb606361302521bfa36e9c))
+* Relax pypdfium2 version constraint, support 5.x ([#2873](https://github.com/docling-project/docling/issues/2873)) ([`daf2bc6`](https://github.com/docling-project/docling/commit/daf2bc6d55ab9fd3c818e5319d4820361cc28e47))
+
+### Documentation
+
+* Correct broken link to supported formats ([#2878](https://github.com/docling-project/docling/issues/2878)) ([`16e88d5`](https://github.com/docling-project/docling/commit/16e88d50fa9e50351b1847897ff10aa4a3324872))
+
 ## [v2.68.0](https://github.com/docling-project/docling/releases/tag/v2.68.0) - 2026-01-13
 
 ### Feature
