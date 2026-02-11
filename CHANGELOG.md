@@ -1,3 +1,20 @@
+## [v2.73.0](https://github.com/docling-project/docling/releases/tag/v2.73.0) - 2026-02-11
+
+### Feature
+
+* Inference engines abstraction for object detection model family with HF Transformers and ONNX runtime ([#2959](https://github.com/docling-project/docling/issues/2959)) ([`14e474c`](https://github.com/docling-project/docling/commit/14e474c95555f04e5c4ac55351ad802d372858fc))
+* Added support for parsing LaTeX (.tex) documents ([#2890](https://github.com/docling-project/docling/issues/2890)) ([`e6ccb8b`](https://github.com/docling-project/docling/commit/e6ccb8b2c1d99fa6e2660d7c4bb866af7960bc2d))
+* Introduce pluggable VLM runtime system with preset-based configuration ([#2919](https://github.com/docling-project/docling/issues/2919)) ([`d4c8713`](https://github.com/docling-project/docling/commit/d4c87133f3f4dcfc8c7619d533bac31cc297350d))
+
+### Fix
+
+* Restore expected behavior for artifacts_path and accelerator_options in VLM engines ([#2961](https://github.com/docling-project/docling/issues/2961)) ([`9721321`](https://github.com/docling-project/docling/commit/9721321c4604da9334e84f7942b41222b580ae96))
+* Allow offline chart extraction model artifacts ([#2957](https://github.com/docling-project/docling/issues/2957)) ([`ae4fdbb`](https://github.com/docling-project/docling/commit/ae4fdbbb09fd377bb271e9b2efe541873eeb2990))
+
+### Documentation
+
+* Add LaTeX and WebVTT as supported types ([#2974](https://github.com/docling-project/docling/issues/2974)) ([`704ef0a`](https://github.com/docling-project/docling/commit/704ef0afbaca782d35454b66b26e3cb931c79653))
+
 ## [v2.72.0](https://github.com/docling-project/docling/releases/tag/v2.72.0) - 2026-02-03
 
 ### Feature
