@@ -926,7 +926,7 @@ wheels = [
 
 [[package]]
 name = "docling"
-version = "2.73.0"
+version = "2.73.1"
 source = { editable = "." }
 dependencies = [
     { name = "accelerate" },
@@ -963,6 +963,7 @@ dependencies = [
 [package.optional-dependencies]
 asr = [
     { name = "mlx-whisper", marker = "platform_machine == 'arm64' and sys_platform == 'darwin'" },
+    { name = "numba" },
     { name = "openai-whisper" },
 ]
 easyocr = [
@@ -1049,6 +1050,7 @@ requires-dist = [
     { name = "marko", specifier = ">=2.1.2,<3.0.0" },
     { name = "mlx-vlm", marker = "python_full_version >= '3.10' and platform_machine == 'arm64' and sys_platform == 'darwin' and extra == 'vlm'", specifier = ">=0.3.0,<1.0.0" },
     { name = "mlx-whisper", marker = "python_full_version >= '3.10' and platform_machine == 'arm64' and sys_platform == 'darwin' and extra == 'asr'", specifier = ">=0.4.3" },
+    { name = "numba", marker = "extra == 'asr'", specifier = ">=0.63.0" },
     { name = "ocrmac", marker = "sys_platform == 'darwin'", specifier = ">=1.0.0,<2.0.0" },
     { name = "ocrmac", marker = "sys_platform == 'darwin' and extra == 'ocrmac'", specifier = ">=1.0.0,<2.0.0" },
     { name = "onnxruntime", marker = "python_full_version < '3.14' and extra == 'rapidocr'", specifier = ">=1.7.0,<2.0.0" },
