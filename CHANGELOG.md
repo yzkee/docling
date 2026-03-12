@@ -1,3 +1,16 @@
+## [v2.79.0](https://github.com/docling-project/docling/releases/tag/v2.79.0) - 2026-03-12
+
+### Feature
+
+* Add fact metadata and linkbase relationships for XBRL ([#3084](https://github.com/docling-project/docling/issues/3084)) ([`7952efe`](https://github.com/docling-project/docling/commit/7952efee2fcbae2a9c516d75acd8995c004fc949))
+
+### Fix
+
+* Use OCR cells with TableFormer v2 ([#3107](https://github.com/docling-project/docling/issues/3107)) ([`93f6fee`](https://github.com/docling-project/docling/commit/93f6feeabcef81b1f71a189458b0166af9db176c))
+* Add self-consistency check in the table-structure model ([#3105](https://github.com/docling-project/docling/issues/3105)) ([`2a0e11f`](https://github.com/docling-project/docling/commit/2a0e11f762fc06e16597c5d3662bc47a500efefa))
+* Correct typos in log messages and add missing error log ([#3097](https://github.com/docling-project/docling/issues/3097)) ([`198d0af`](https://github.com/docling-project/docling/commit/198d0af19b20424e118301d47d155e4b021e50a7))
+* Don't force cast to float32 in API Kserve v2 inputs ([#3101](https://github.com/docling-project/docling/issues/3101)) ([`fef01f8`](https://github.com/docling-project/docling/commit/fef01f8c88ed827e6443f4f6fc25fa94571dcd41))
+
 ## [v2.78.0](https://github.com/docling-project/docling/releases/tag/v2.78.0) - 2026-03-10
 
 ### Feature
