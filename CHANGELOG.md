@@ -1,3 +1,21 @@
+## [v2.83.0](https://github.com/docling-project/docling/releases/tag/v2.83.0) - 2026-03-31
+
+### Feature
+
+* Upgrade to transformers v5 ([#3200](https://github.com/docling-project/docling/issues/3200)) ([`d2c6357`](https://github.com/docling-project/docling/commit/d2c6357982d79629440919188d73bda18bc678c8))
+* OCR model for remote KServe v2 API ([#3189](https://github.com/docling-project/docling/issues/3189)) ([`8522b00`](https://github.com/docling-project/docling/commit/8522b00146a2217760ad1944934926ed0e9f5d39))
+
+### Fix
+
+* **pdf:** Propagate hyperlinks to DoclingDocument text items ([#3131](https://github.com/docling-project/docling/issues/3131)) ([`524edcc`](https://github.com/docling-project/docling/commit/524edcce73869a87b6ccf73bc16324742bd36648))
+* **xlsx:** Guard last-row bounds in Excel table scan ([#3197](https://github.com/docling-project/docling/issues/3197)) ([`85ac377`](https://github.com/docling-project/docling/commit/85ac3775148494e2767bbe17ce8d7a28a8baf6b6))
+* Parse LaTeX macros in multicolumn/multirow table cells ([#3204](https://github.com/docling-project/docling/issues/3204)) ([`89c68f8`](https://github.com/docling-project/docling/commit/89c68f8ec373c6012c963a39ea70f5c122e0e779))
+* Handle empty CSV file without crashing ([#3196](https://github.com/docling-project/docling/issues/3196)) ([`f283484`](https://github.com/docling-project/docling/commit/f2834848aeaa63ac51f4968e1665b6b8e77b90e4))
+
+### Documentation
+
+* Add line-based chunker documentation and examples ([#3210](https://github.com/docling-project/docling/issues/3210)) ([`3a64f41`](https://github.com/docling-project/docling/commit/3a64f41af86c90af71d6befe619f9f5a12a26e5f))
+
 ## [v2.82.0](https://github.com/docling-project/docling/releases/tag/v2.82.0) - 2026-03-25
 
 ### Feature
