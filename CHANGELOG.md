@@ -1,3 +1,11 @@
+## [v2.84.0](https://github.com/docling-project/docling/releases/tag/v2.84.0) - 2026-04-01
+
+### Feature
+
+* Glm ocr ([#3146](https://github.com/docling-project/docling/issues/3146)) ([`a9265d8`](https://github.com/docling-project/docling/commit/a9265d854a195993d2e63bfc8c4bb2f76be7f9d9))
+* Switch to the latest version of DocumentFigureClassifier model v2.5 ([#3171](https://github.com/docling-project/docling/issues/3171)) ([`d046390`](https://github.com/docling-project/docling/commit/d046390bf4bff2c538cb33eebb03dce56d122d37))
+* Remove the deprecation of extraction ([#3220](https://github.com/docling-project/docling/issues/3220)) ([`e9a39e8`](https://github.com/docling-project/docling/commit/e9a39e872048f31b57402926ae3a40c05b7d24d0))
+
 ## [v2.83.0](https://github.com/docling-project/docling/releases/tag/v2.83.0) - 2026-03-31
 
 ### Feature
