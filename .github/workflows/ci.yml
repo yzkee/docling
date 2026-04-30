@@ -116,3 +116,35 @@ jobs:
         }}
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  ci-status:
+    if: ${{ always() }}
+    needs:
+      - changes
+      - code-checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Check CI result
+        env:
+          CHANGES_RESULT: ${{ needs.changes.result }}
+          CODE_CHECKS_RESULT: ${{ needs.code-checks.result }}
+        run: |
+          if [ "$CHANGES_RESULT" != "success" ]; then
+            echo "::error title=CI changes job failed::changes result was $CHANGES_RESULT"
+            exit 1
+          fi
+
+          case "$CODE_CHECKS_RESULT" in
+            success)
+              echo "CI checks passed."
+              ;;
+            skipped)
+              echo "CI checks are not required for this change set."
+              ;;
+            *)
+              echo "::error title=CI checks failed::code-checks result was $CODE_CHECKS_RESULT"
+              exit 1
+              ;;
+          esac
