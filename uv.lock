@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10, <4.0"
 resolution-markers = [
     "python_full_version >= '3.15' and sys_platform == 'win32'",
@@ -1107,7 +1107,7 @@ wheels = [
 
 [[package]]
 name = "docling"
-version = "2.93.0"
+version = "2.94.0"
 source = { editable = "packages/docling" }
 dependencies = [
     { name = "docling-slim", extra = ["standard"] },
@@ -1257,7 +1257,7 @@ wheels = [
 
 [[package]]
 name = "docling-slim"
-version = "2.93.0"
+version = "2.94.0"
 source = { editable = "." }
 dependencies = [
     { name = "certifi" },
