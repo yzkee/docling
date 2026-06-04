@@ -263,11 +263,23 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
         for element in body:
             tag_name = etree.QName(element).localname
             # Check for Inline Images (blip elements)
-            drawing_blip = self.blip_xpath_expr(element)
-            drawingml_els = element.findall(
+            _raw_drawing_blip = self.blip_xpath_expr(element)
+            _raw_drawingml_els = element.findall(
                 ".//w:drawing", namespaces=MsWordDocumentBackend._BLIP_NAMESPACES
             )
-            vml_images = self.vml_imagedata_xpath_expr(element)
+            _raw_vml_images = self.vml_imagedata_xpath_expr(element)
+
+            # Filter out images inside textboxes to prevent double-extraction
+            # (they will be properly extracted by _handle_textbox_content instead)
+            def _in_textbox(elem):
+                return any(
+                    etree.QName(anc).localname in ["txbxContent", "textbox"]
+                    for anc in elem.iterancestors()
+                )
+
+            drawing_blip = [x for x in _raw_drawing_blip if not _in_textbox(x)]
+            drawingml_els = [x for x in _raw_drawingml_els if not _in_textbox(x)]
+            vml_images = [x for x in _raw_vml_images if not _in_textbox(x)]
 
             # Check for textbox content - check multiple textbox formats
             # Only process if the element hasn't been processed before
@@ -1057,8 +1069,8 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
         textbox_elements: list,
         doc: DoclingDocument,
     ) -> list[RefItem]:
-        elem_ref: list[RefItem] = []
         """Process textbox content and add it to the document structure."""
+        elem_ref: list[RefItem] = []
         level = self._get_level()
         # Create a textbox group to contain all text from the textbox
         textbox_group = doc.add_group(
@@ -1093,29 +1105,44 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
             # Add the sorted paragraphs to our processing list
             all_paragraphs.extend(sorted_container_paragraphs)
 
-        # Track processed paragraphs to avoid duplicates (same content and position)
+        # Track processed paragraphs to avoid duplicates
         processed_paragraphs = set()
 
         # Process all the paragraphs
         for p, position in all_paragraphs:
             # Create paragraph object to get text content
             paragraph = Paragraph(p, self.docx_obj)
-            text_content = paragraph.text
+            text_content = paragraph.text.strip()
 
-            # Create a unique identifier based on content and position
-            paragraph_id = (text_content, position)
-
-            # Skip if this paragraph (same content and position) was already processed
-            if paragraph_id in processed_paragraphs:
-                _log.debug(
-                    f"Skipping duplicate paragraph: content='{text_content[:50]}...', position={position}"
-                )
-                continue
-
-            # Mark this paragraph as processed
-            processed_paragraphs.add(paragraph_id)
+            if text_content:
+                # Deduplicate AlternateContent by exact text natively
+                if text_content in processed_paragraphs:
+                    continue
+                processed_paragraphs.add(text_content)
+            else:
+                # Preserve empty regions (images) based on position
+                paragraph_id = (text_content, position)
+                if paragraph_id in processed_paragraphs:
+                    continue
+                processed_paragraphs.add(paragraph_id)
 
             elem_ref.extend(self._handle_text_elements(p, doc))
+
+            # Extract embedded images inside the text box
+            tb_drawing_blip = self.blip_xpath_expr(p)
+            tb_vml_images = self.vml_imagedata_xpath_expr(p)
+            tb_drawingml_els = p.findall(
+                ".//w:drawing", namespaces=MsWordDocumentBackend._BLIP_NAMESPACES
+            )
+
+            if tb_drawing_blip:
+                pics = self._handle_pictures(tb_drawing_blip, doc)
+                elem_ref.extend(pics)
+            elif tb_vml_images:
+                vml_pics = self._handle_vml_pictures(tb_vml_images, doc)
+                elem_ref.extend(vml_pics)
+            elif tb_drawingml_els:
+                self._handle_drawingml(doc=doc, drawingml_els=tb_drawingml_els)
 
         # Restore original parent
         self.parents[level] = original_parent
@@ -2189,6 +2216,14 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                     except (UnidentifiedImageError, OSError) as e:
                         _log.warning(f"Warning: image cannot be loaded by Pillow: {e}")
                         pil_image = None
+
+                if pil_image is None and image is not None:
+                    _log.debug(
+                        "Direct PIL loading failed, trying DOCX conversion via LibreOffice"
+                    )
+                    pil_image = self._convert_elements_via_docx(
+                        image, ["drawing", "pict"]
+                    )
 
                 elem_ref.append(self._add_picture_to_doc(doc, parent, pil_image))
         return elem_ref
