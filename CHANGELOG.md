@@ -1,3 +1,15 @@
+## [v2.100.0](https://github.com/docling-project/docling/releases/tag/v2.100.0) - 2026-06-09
+
+### Feature
+
+* Add DocLang backend ([#3573](https://github.com/docling-project/docling/issues/3573)) ([`7c37732`](https://github.com/docling-project/docling/commit/7c377320df4497aa5054d2fb4c288f035942b193))
+* Add EPUB document backend with full conversion support ([#3571](https://github.com/docling-project/docling/issues/3571)) ([`bffe900`](https://github.com/docling-project/docling/commit/bffe900d43150b90b4110c5e0ec3c7c69b64cd04))
+
+### Fix
+
+* Expose CLI entry points when installing docling meta-package ([#3572](https://github.com/docling-project/docling/issues/3572)) ([`c5fa6e3`](https://github.com/docling-project/docling/commit/c5fa6e3cad2dcc174bb6ba56b2981df2d1df6ee0))
+* Propagate the orientation of the TableData ([#3570](https://github.com/docling-project/docling/issues/3570)) ([`b108ca8`](https://github.com/docling-project/docling/commit/b108ca8c0fe0f6f0d619b839b3d0207bb0b5ba05))
+
 ## [v2.99.0](https://github.com/docling-project/docling/releases/tag/v2.99.0) - 2026-06-08
 
 ### Feature
