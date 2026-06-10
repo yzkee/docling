@@ -1347,7 +1347,7 @@ provides-extras = ["easyocr", "tesserocr", "ocrmac", "vlm", "rapidocr", "asr", "
 
 [[package]]
 name = "docling-core"
-version = "2.80.0"
+version = "2.81.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "defusedxml" },
@@ -1364,9 +1364,8 @@ dependencies = [
     { name = "typer" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/38/d2/1b0460ee245029604f1541b954c125207eb82d23f67d04a606d79f9adf5c/docling_core-2.80.0.tar.gz", hash = "sha256:7a89dda4a2cd406d7e0c85b8b14867d4fb2c6f261f39ca94f678e191b634a3ed", size = 349214, upload-time = "2026-06-09T13:38:56.16Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/46/c7/0610c9c764d31bd3fab4f976afd1a00bb1b614339a8504868d6605546c4b/docling_core-2.80.0-py3-none-any.whl", hash = "sha256:a8dcb87a445df08ac7608a0907d847a88aa7418c9da46608cb00fb9af06e279c", size = 296069, upload-time = "2026-06-09T13:38:54.361Z" },
+    { url = "https://files.pythonhosted.org/packages/b5/c2/6f102e0b6b7c6705807acbb0173d18179496406b754068e71a7da458f54a/docling_core-2.81.0-py3-none-any.whl", hash = "sha256:5ab2628fd389e9beeeebafceff9177457ba9d816b9533e3c1faa530b75c9c5ac", size = 297048, upload-time = "2026-06-10T14:26:06.342Z" },
 ]
 
 [package.optional-dependencies]
