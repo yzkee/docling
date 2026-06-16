@@ -60,6 +60,7 @@ from docling.datamodel.service.targets import (
 from docling.service_client import (
     DEFAULT_MAX_CONCURRENCY,
     MAX_CONCURRENCY_LIMIT,
+    ChunkerKind,
     ConversionItem,
     DoclingServiceClient,
 )
@@ -1495,6 +1496,43 @@ def test_submit_source_serializes_convert_options_without_defaults() -> None:
     assert payload["options"] == {"page_range": [3, 7]}
 
 
+def test_submit_local_string_source_uses_file_endpoint(tmp_path: Path) -> None:
+    captured: dict[str, object] = {}
+    sample = tmp_path / "sample.pdf"
+    sample.write_bytes(b"%PDF-1.4\n")
+
+    def fake_request_with_retry(**kw: object) -> httpx.Response:
+        captured.update(kw)
+        return httpx.Response(
+            200,
+            json=_status_response("task-file-string", "pending").model_dump(
+                mode="json"
+            ),
+        )
+
+    with DoclingServiceClient(url=TEST_BASE_URL) as client:
+        client._request_with_retry = fake_request_with_retry  # type: ignore[method-assign]
+        job = client.submit(
+            source=str(sample),
+            target=InBodyTarget(),
+            options=ConvertDocumentsRequestOptions(
+                page_range=(3, 7),
+                document_timeout=None,
+            ),
+        )
+
+    assert job.task_id == "task-file-string"
+    assert captured["path"] == "/v1/convert/file/async"
+    data = captured["data"]
+    assert isinstance(data, dict)
+    assert data["page_range"] == [3, 7]
+    assert data["target_type"] == "inbody"
+    files = captured["files"]
+    assert isinstance(files, dict)
+    assert files["files"][0] == "sample.pdf"
+    assert files["files"][2] == "application/pdf"
+
+
 def test_submit_file_serializes_convert_options_without_defaults(
     tmp_path: Path,
 ) -> None:
@@ -1525,6 +1563,36 @@ def test_submit_file_serializes_convert_options_without_defaults(
         "page_range": [3, 7],
         "target_type": "inbody",
     }
+
+
+def test_submit_chunk_local_string_source_uses_file_endpoint(tmp_path: Path) -> None:
+    captured: dict[str, object] = {}
+    sample = tmp_path / "sample.pdf"
+    sample.write_bytes(b"%PDF-1.4\n")
+
+    def fake_request_with_retry(**kw: object) -> httpx.Response:
+        captured.update(kw)
+        return httpx.Response(
+            200,
+            json=_status_response("task-chunk-file-string", "pending").model_dump(
+                mode="json"
+            ),
+        )
+
+    with DoclingServiceClient(url=TEST_BASE_URL) as client:
+        client._request_with_retry = fake_request_with_retry  # type: ignore[method-assign]
+        job = client.submit_chunk(
+            source=str(sample),
+            chunker=ChunkerKind.HYBRID,
+            options=ConvertDocumentsRequestOptions(),
+        )
+
+    assert job.task_id == "task-chunk-file-string"
+    assert captured["path"] == "/v1/chunk/hybrid/file/async"
+    files = captured["files"]
+    assert isinstance(files, dict)
+    assert files["files"][0] == "sample.pdf"
+    assert files["files"][2] == "application/pdf"
 
 
 def test_submit_accepts_http_source_request() -> None:
@@ -1559,6 +1627,12 @@ def test_submit_accepts_http_source_request() -> None:
     assert '"headers":{"Authorization":"Bearer source-token"}' in str(
         captured["payload"]
     )
+
+
+def test_convert_rejects_unsupported_url_scheme() -> None:
+    with DoclingServiceClient(url=TEST_BASE_URL) as client:
+        with pytest.raises(ValueError, match="Unsupported URL scheme"):
+            client.convert("ftp://example.org/sample.pdf")
 
 
 def test_submit_auto_falls_back_to_inbody_when_presigned_is_rejected() -> None:

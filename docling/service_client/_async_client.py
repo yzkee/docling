@@ -664,13 +664,13 @@ class AsyncDoclingServiceClient(_BaseDoclingServiceClient):
         async_client: httpx.AsyncClient,
         request_headers: dict[str, str] | None = None,
     ) -> TaskStatusResponse:
+        source = self._normalize_source(source)
         source_name = self._source_name(source)
         logger.info("Submitting convert task for source=%s", source_name)
-        if isinstance(source, (str, HttpSourceRequest)):
-            request_source = self._normalize_http_source(source)
+        if isinstance(source, HttpSourceRequest):
             request = ConvertDocumentsRequest(
                 options=options,
-                sources=[request_source],
+                sources=[source],
                 target=target,
             )
             response = await self._request_with_retry_using_client(
@@ -738,8 +738,8 @@ class AsyncDoclingServiceClient(_BaseDoclingServiceClient):
         chunker: ChunkerKind,
         options: ConvertDocumentsRequestOptions,
     ) -> TaskStatusResponse:
-        if isinstance(source, (str, HttpSourceRequest)):
-            request_source = self._normalize_http_source(source)
+        source = self._normalize_source(source)
+        if isinstance(source, HttpSourceRequest):
             chunking_options: HybridChunkerOptions | HierarchicalChunkerOptions
             if chunker == ChunkerKind.HYBRID:
                 chunking_options = HybridChunkerOptions()
@@ -751,7 +751,7 @@ class AsyncDoclingServiceClient(_BaseDoclingServiceClient):
                     mode="json",
                     exclude_none=True,
                 ),
-                "sources": [request_source.model_dump(mode="json", exclude_none=True)],
+                "sources": [source.model_dump(mode="json", exclude_none=True)],
                 "include_converted_doc": False,
                 "target": InBodyTarget().model_dump(mode="json"),
                 "callbacks": [],

@@ -27,7 +27,7 @@ import httpx
 from docling_core.types.doc import DoclingDocument, ImageRef, PictureItem
 from docling_core.types.io import DocumentStream
 from PIL import Image as PILImage
-from pydantic import ValidationError
+from pydantic import AnyHttpUrl, TypeAdapter, ValidationError
 
 from docling.backend.noop_backend import NoOpBackend
 from docling.datamodel.base_models import (
@@ -415,6 +415,7 @@ class _BaseDoclingServiceClient:
         return match.group("name")
 
     def _describe_source(self, source: SourceType) -> _SourceDescriptor:
+        source = self._normalize_source(source)
         if isinstance(source, Path):
             return _SourceDescriptor(
                 source_name=source.name,
@@ -428,8 +429,7 @@ class _BaseDoclingServiceClient:
                 file_size=len(source.stream.getbuffer()),
             )
 
-        request_source = self._normalize_http_source(source)
-        parsed = urlparse(str(request_source.url))
+        parsed = urlparse(str(source.url))
         filename = Path(parsed.path).name if parsed.path else "document"
         return _SourceDescriptor(
             source_name=filename,
@@ -449,15 +449,22 @@ class _BaseDoclingServiceClient:
             return self._extension_to_format[extension]
         return InputFormat.PDF
 
-    def _normalize_http_source(
-        self, source: str | HttpSourceRequest
-    ) -> HttpSourceRequest:
-        if isinstance(source, HttpSourceRequest):
+    def _normalize_source(
+        self, source: SourceType
+    ) -> Path | HttpSourceRequest | DocumentStream:
+        if isinstance(source, (Path, HttpSourceRequest, DocumentStream)):
             return source
-        parsed = urlparse(source)
-        if parsed.scheme not in {"http", "https"}:
-            raise ValueError("String sources must be HTTP or HTTPS URLs.")
-        return HttpSourceRequest(url=source, headers={})
+        try:
+            http_url = TypeAdapter(AnyHttpUrl).validate_python(source)
+            return HttpSourceRequest(url=str(http_url), headers={})
+        except ValidationError:
+            if "://" in source:
+                scheme = source.split("://", 1)[0].lower()
+                if scheme not in ("http", "https"):
+                    raise ValueError(
+                        f"Unsupported URL scheme: '{scheme}'. Only http:// and https:// are supported."
+                    )
+            return TypeAdapter(Path).validate_python(source)
 
     @staticmethod
     def _validate_concurrency(value: int, *, name: str) -> int:
@@ -1103,13 +1110,13 @@ class DoclingServiceClient(_BaseDoclingServiceClient):
         target: SubmitTarget,
         request_headers: dict[str, str] | None = None,
     ) -> TaskStatusResponse:
+        source = self._normalize_source(source)
         source_name = self._source_name(source)
         logger.info("Submitting convert task for source=%s", source_name)
-        if isinstance(source, (str, HttpSourceRequest)):
-            request_source = self._normalize_http_source(source)
+        if isinstance(source, HttpSourceRequest):
             request = ConvertDocumentsRequest(
                 options=options,
-                sources=[request_source],
+                sources=[source],
                 target=target,
             )
             response = self._request_with_retry(
@@ -1148,8 +1155,8 @@ class DoclingServiceClient(_BaseDoclingServiceClient):
         chunker: ChunkerKind,
         options: ConvertDocumentsRequestOptions,
     ) -> TaskStatusResponse:
-        if isinstance(source, (str, HttpSourceRequest)):
-            request_source = self._normalize_http_source(source)
+        source = self._normalize_source(source)
+        if isinstance(source, HttpSourceRequest):
             chunking_options: HybridChunkerOptions | HierarchicalChunkerOptions
             if chunker == ChunkerKind.HYBRID:
                 chunking_options = HybridChunkerOptions()
@@ -1161,7 +1168,7 @@ class DoclingServiceClient(_BaseDoclingServiceClient):
                 "chunking_options": chunking_options.model_dump(
                     mode="json", exclude_none=True
                 ),
-                "sources": [request_source.model_dump(mode="json")],
+                "sources": [source.model_dump(mode="json")],
                 "include_converted_doc": False,
                 "target": InBodyTarget().model_dump(mode="json"),
                 "callbacks": [],
