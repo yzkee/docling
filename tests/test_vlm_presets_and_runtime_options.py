@@ -163,6 +163,112 @@ class TestRuntimeOptions:
             )
         ]
 
+    def test_transformers_engine_rejects_dots_on_transformers_v5(self, monkeypatch):
+        """Dots models are a transformers-v4-only runtime path."""
+        import docling.models.inference_engines.vlm.transformers_engine as tf_engine
+
+        monkeypatch.setattr(
+            tf_engine.importlib.metadata,
+            "version",
+            lambda package: "5.0.0" if package == "transformers" else "0.0.0",
+        )
+
+        engine = TransformersVlmEngine(
+            options=TransformersVlmEngineOptions(),
+            accelerator_options=AcceleratorOptions(device=AcceleratorDevice.CPU),
+            artifacts_path=None,
+        )
+
+        with pytest.raises(NotImplementedError, match="transformers<5"):
+            engine._load_model_for_repo("rednote-hilab/dots.ocr")
+
+    @pytest.mark.parametrize(
+        ("transformers_version", "expected_dtype_arg"),
+        [("4.51.3", "torch_dtype"), ("5.0.0", "dtype")],
+    )
+    def test_transformers_engine_uses_versioned_dtype_arg(
+        self, monkeypatch, transformers_version, expected_dtype_arg
+    ):
+        """Transformers 4 remote models still expect torch_dtype."""
+        import docling.models.inference_engines.vlm.transformers_engine as tf_engine
+
+        captured_kwargs = {}
+
+        class FakeProcessor:
+            tokenizer = None
+
+        class FakeModel:
+            @classmethod
+            def from_pretrained(cls, *args, **kwargs):
+                captured_kwargs.update(kwargs)
+                return cls()
+
+            def eval(self):
+                return None
+
+        monkeypatch.setattr(
+            tf_engine.importlib.metadata,
+            "version",
+            lambda package: (
+                transformers_version if package == "transformers" else "0.0.0"
+            ),
+        )
+        monkeypatch.setattr(
+            tf_engine,
+            "resolve_model_artifacts_path",
+            lambda **kwargs: "artifacts",
+        )
+        monkeypatch.setattr(
+            tf_engine.AutoProcessor,
+            "from_pretrained",
+            lambda *args, **kwargs: FakeProcessor(),
+        )
+        monkeypatch.setattr(tf_engine, "AutoModelForCausalLM", FakeModel)
+        monkeypatch.setattr(
+            tf_engine.GenerationConfig,
+            "from_pretrained",
+            lambda *args, **kwargs: object(),
+        )
+
+        engine = TransformersVlmEngine(
+            options=TransformersVlmEngineOptions(
+                torch_dtype="bfloat16",
+                compile_model=False,
+            ),
+            accelerator_options=AcceleratorOptions(device=AcceleratorDevice.CPU),
+            artifacts_path=None,
+        )
+        engine.device = "cpu"
+
+        engine._load_model_for_repo(
+            "rednote-hilab/dots.ocr"
+            if transformers_version.startswith("4.")
+            else "test/model",
+            model_type=TransformersModelType.AUTOMODEL_CAUSALLM,
+        )
+
+        assert captured_kwargs[expected_dtype_arg] == "bfloat16"
+        assert ("dtype" in captured_kwargs) is (expected_dtype_arg == "dtype")
+        assert ("torch_dtype" in captured_kwargs) is (
+            expected_dtype_arg == "torch_dtype"
+        )
+
+    def test_dots_mocr_requires_flash_attn(self, monkeypatch):
+        """dots.mocr remote code imports flash_attn even when SDPA is selected."""
+        import docling.models.inference_engines.vlm.transformers_engine as tf_engine
+
+        original_import_module = tf_engine.importlib.import_module
+
+        def import_module(name, *args, **kwargs):
+            if name == "flash_attn":
+                raise ImportError
+            return original_import_module(name, *args, **kwargs)
+
+        monkeypatch.setattr(tf_engine.importlib, "import_module", import_module)
+
+        with pytest.raises(ImportError, match="requires flash-attn"):
+            tf_engine._ensure_dots_flash_attn_import()
+
 
 # =============================================================================
 # MODEL SPEC TESTS
@@ -240,6 +346,31 @@ class TestVlmModelSpec:
         # Engine without override should not have torch_dtype in extra_config
         config_other = spec.get_engine_config(VlmEngineType.MLX)
         assert "torch_dtype" not in config_other.extra_config
+
+    def test_get_engine_config_preserves_transformers_stop_string_cleanup_flag(self):
+        """Transformers-only decoded stop-string stripping stays in extra_config."""
+        spec = VlmModelSpec(
+            name="Test Model",
+            default_repo_id="test/model",
+            prompt="Test prompt",
+            response_format=ResponseFormat.DOCTAGS,
+            engine_overrides={
+                VlmEngineType.TRANSFORMERS: EngineModelConfig(
+                    extra_config={"transformers_strip_stop_strings": True},
+                ),
+            },
+        )
+
+        assert (
+            spec.get_engine_config(VlmEngineType.TRANSFORMERS).extra_config[
+                "transformers_strip_stop_strings"
+            ]
+            is True
+        )
+        assert (
+            "transformers_strip_stop_strings"
+            not in spec.get_engine_config(VlmEngineType.VLLM).extra_config
+        )
 
     def test_same_repo_engine_override_counts_as_explicit_support(self):
         """Native handlers can use the default repo_id and still be explicit."""
@@ -586,6 +717,8 @@ class TestPresetEngineIntegration:
             ResponseFormat.MARKDOWN,
             ResponseFormat.DEEPSEEKOCR_MARKDOWN,
             ResponseFormat.PLAINTEXT,
+            ResponseFormat.CHANDRA_HTML,
+            ResponseFormat.DOTS_JSON,
         ]
 
         # Check VlmConvert presets
