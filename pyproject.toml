@@ -189,6 +189,10 @@ feat-ocr-mac = [
   'ocrmac>=1.0.0,<2.0.0 ; sys_platform == "darwin"',
 ]
 
+feat-ocr-nemotron = [
+  'nemotron-ocr>=2.0.0 ; python_version == "3.12" and sys_platform == "linux" and platform_machine == "x86_64"',
+]
+
 # ============================================================================
 # MODELS
 # ============================================================================
@@ -337,7 +341,6 @@ members = ["packages/docling"]
 docling = { workspace = true }
 # docling-core = { git = "https://github.com/docling-project/docling-core/", rev = "main" }
 
-
 [tool.uv]
 package = true
 default-groups = "all"
@@ -436,6 +439,8 @@ allowed-unresolved-imports = [
   "huggingface_hub.**",
   "lxml.**",
   "mlx_vlm.**",
+  "nemotron_ocr.**",
+  "nemotron_ocr_cpp.**",
   "networkx.**",
   "ocrmac.**",
   "onnxruntime.**",
