@@ -1,3 +1,10 @@
+## [v2.106.0](https://github.com/docling-project/docling/releases/tag/v2.106.0) - 2026-06-23
+
+### Feature
+
+* **pdf:** Infer PDF heading levels so the hierarchy isn't flattened ([#3633](https://github.com/docling-project/docling/issues/3633)) ([`5237d7f`](https://github.com/docling-project/docling/commit/5237d7f5649d5dc70929d6da3eb179aad282a8fe))
+* Use docling-parse v7 ([#3517](https://github.com/docling-project/docling/issues/3517)) ([`acb156c`](https://github.com/docling-project/docling/commit/acb156c28ce284a6f3e3232561968a05af595ad8))
+
 ## [v2.105.0](https://github.com/docling-project/docling/releases/tag/v2.105.0) - 2026-06-22
 
 ### Feature
