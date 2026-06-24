@@ -34,8 +34,10 @@ def extractor() -> DocumentExtractor:
 @pytest.fixture
 def test_file_path() -> Path:
     """Get the path to the test QR bill image."""
-    return Path(__file__).parent / "data_scanned" / "qr_bill_example.jpg"
-    # return Path("tests/data/pdf/code_and_formula.pdf")
+    return (
+        Path(__file__).parent / "data" / "scanned" / "sources" / "qr_bill_example.jpg"
+    )
+    # return Path("tests/data/pdf/sources/code_and_formula.pdf")
 
 
 @pytest.mark.skipif(
@@ -114,7 +116,7 @@ def test_extraction_format_not_allowed_is_policy() -> None:
 
     # Allow only PDF, then feed the JPEG sample so the format is rejected.
     pdf_only = DocumentExtractor(allowed_formats=[InputFormat.PDF])
-    img = Path(__file__).parent / "data_scanned" / "qr_bill_example.jpg"
+    img = Path(__file__).parent / "data" / "scanned" / "sources" / "qr_bill_example.jpg"
     result = pdf_only.extract(
         img, template='{"bill_no": "string"}', raises_on_error=False
     )
@@ -126,7 +128,7 @@ def test_extraction_format_not_allowed_is_policy() -> None:
 
 def test_extraction_format_not_allowed_with_exception_surfaces_error_details() -> None:
     pdf_only = DocumentExtractor(allowed_formats=[InputFormat.PDF])
-    img = Path(__file__).parent / "data_scanned" / "qr_bill_example.jpg"
+    img = Path(__file__).parent / "data" / "scanned" / "sources" / "qr_bill_example.jpg"
 
     with pytest.raises(
         ConversionError,
@@ -319,7 +321,7 @@ def test_extraction_pipeline_failure_is_categorized() -> None:
             return PipelineOptions()
 
     # Build a minimal valid InputDocument from the sample image.
-    img = Path(__file__).parent / "data_scanned" / "qr_bill_example.jpg"
+    img = Path(__file__).parent / "data" / "scanned" / "sources" / "qr_bill_example.jpg"
     from docling.backend.docling_parse_v4_backend import DoclingParseV4DocumentBackend
     from docling.datamodel.document import InputDocument
 

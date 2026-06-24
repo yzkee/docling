@@ -28,7 +28,7 @@ GENERATE = GEN_TEST_DATA
 
 def get_excel_paths():
     # Define the directory you want to search
-    directory = Path("./tests/data/xlsx/")
+    directory = Path("./tests/data/xlsx/sources/")
 
     # List all Excel files in the directory and its subdirectories
     excel_files = sorted(directory.rglob("*.xlsx")) + sorted(directory.rglob("*.xlsm"))
@@ -51,9 +51,7 @@ def documents() -> list[tuple[Path, DoclingDocument]]:
     for excel_path in excel_paths:
         _log.debug(f"converting {excel_path}")
 
-        gt_path = (
-            excel_path.parent.parent / "groundtruth" / "docling_v2" / excel_path.name
-        )
+        gt_path = excel_path.parent.parent / "groundtruth" / excel_path.name
 
         conv_result: ConversionResult = converter.convert(excel_path)
 
