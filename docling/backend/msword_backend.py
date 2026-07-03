@@ -36,7 +36,7 @@ from docx.text.paragraph import Paragraph
 from docx.text.run import Run
 from lxml import etree
 from PIL import Image, UnidentifiedImageError
-from pydantic import AnyUrl
+from pydantic import AnyUrl, ValidationError
 from typing_extensions import override
 
 from docling.backend.abstract_backend import DeclarativeDocumentBackend
@@ -912,12 +912,34 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
         )
 
     def _get_hyperlink_target(self, hyperlink: Hyperlink) -> AnyUrl | Path | None:
+        """Resolve a hyperlink's address to a URL or a local path.
+
+        Addresses without a URL scheme are treated as (relative) filesystem
+        paths. Addresses with a scheme are parsed as URLs.
+
+        Malformed URLs (e.g. an address containing spaces) are handled
+        gracefully: the invalid target is dropped and ``None`` is returned so
+        that the link text is still preserved and conversion of the rest of the
+        document continues. This avoids a single bad hyperlink aborting the
+        whole conversion.
+
+        Args:
+            hyperlink: The DOCX hyperlink whose address should be resolved.
+
+        Returns:
+            An ``AnyUrl`` for a valid URL, a ``Path`` for a scheme-less address,
+            or ``None`` when there is no address or the URL is malformed.
+        """
         if hyperlink.address:
-            return (
-                AnyUrl(hyperlink.address)
-                if urlparse(hyperlink.address).scheme
-                else Path(hyperlink.address)
-            )
+            if not urlparse(hyperlink.address).scheme:
+                return Path(hyperlink.address)
+            try:
+                return AnyUrl(hyperlink.address)
+            except ValidationError:
+                _log.warning(
+                    "Skipping malformed hyperlink address: %r", hyperlink.address
+                )
+                return None
 
         return None
 
