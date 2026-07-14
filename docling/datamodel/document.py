@@ -920,7 +920,7 @@ class _DocumentConversionInput(BaseModel):
             if match_doctype:
                 xml_doctype = match_doctype.group()
                 if InputFormat.XML_USPTO in formats and any(
-                    item in xml_doctype
+                    item in xml_doctype.lower()
                     for item in (
                         "us-patent-application-v4",
                         "us-patent-grant-v4",

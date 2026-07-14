@@ -299,6 +299,13 @@ def test_guess_format(tmp_path):
     doc_path = Path("./tests/data/uspto/sources/ipa20110039701.xml")
     assert dci._guess_format(doc_path) == InputFormat.XML_USPTO
 
+    # Valid XML USPTO patent grant, Full Text Data/XML v2.5
+    buf = BytesIO(Path("./tests/data/uspto/sources/pg06442728.xml").open("rb").read())
+    stream = DocumentStream(name="pg06442728.xml", stream=buf)
+    assert dci._guess_format(stream) == InputFormat.XML_USPTO
+    doc_path = Path("./tests/data/uspto/sources/pg06442728.xml")
+    assert dci._guess_format(doc_path) == InputFormat.XML_USPTO
+
     buf = BytesIO(
         Path("./tests/data/uspto/sources/pftaps057006474.txt").open("rb").read()
     )
