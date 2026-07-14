@@ -162,6 +162,17 @@ class _ConversationItem(BaseModel):
         return result
 
 
+# Distil-Whisper models are not part of openai-whisper's model registry, but
+# their Hugging Face repos publish the checkpoint in the original OpenAI
+# format, which whisper.load_model() accepts as a local file path.
+_DISTIL_WHISPER_OPENAI_CHECKPOINTS: dict[str, tuple[str, str]] = {
+    "distil-small.en": ("distil-whisper/distil-small.en", "original-model.bin"),
+    "distil-medium.en": ("distil-whisper/distil-medium.en", "original-model.bin"),
+    "distil-large-v3": ("distil-whisper/distil-large-v3-openai", "model.bin"),
+    "distil-large-v3.5": ("distil-whisper/distil-large-v3.5-openai", "model.bin"),
+}
+
+
 class _NativeWhisperModel:
     def __init__(
         self,
@@ -202,7 +213,42 @@ class _NativeWhisperModel:
 
             self.model_name = asr_options.repo_id
             _log.info(f"loading _NativeWhisperModel({self.model_name})")
-            if artifacts_path is not None:
+            distil_checkpoint = _DISTIL_WHISPER_OPENAI_CHECKPOINTS.get(self.model_name)
+            if distil_checkpoint is not None:
+                from huggingface_hub import hf_hub_download
+                from huggingface_hub.utils import LocalEntryNotFoundError
+
+                repo_id, filename = distil_checkpoint
+                _log.info(
+                    f"loading {self.model_name} from OpenAI-format checkpoint "
+                    f"{repo_id}/{filename}"
+                )
+                if artifacts_path is not None:
+                    # artifacts_path means fully-offline operation: resolve the
+                    # checkpoint from the local cache and never download.
+                    try:
+                        checkpoint_path = hf_hub_download(
+                            repo_id=repo_id,
+                            filename=filename,
+                            cache_dir=str(artifacts_path),
+                            local_files_only=True,
+                        )
+                    except LocalEntryNotFoundError as err:
+                        raise FileNotFoundError(
+                            f"artifacts_path ({artifacts_path}) does not contain "
+                            f"the checkpoint {repo_id}/{filename} required by ASR "
+                            f"model '{self.model_name}'. Prefetch it with: "
+                            f"hf download {repo_id} {filename} "
+                            f'--cache-dir "{artifacts_path}"'
+                        ) from err
+                else:
+                    checkpoint_path = hf_hub_download(
+                        repo_id=repo_id, filename=filename
+                    )
+                self.model = whisper.load_model(
+                    name=checkpoint_path, device=self.device
+                )
+            elif artifacts_path is not None:
                 _log.info(f"loading {self.model_name} from {artifacts_path}")
                 self.model = whisper.load_model(
                     name=self.model_name,
