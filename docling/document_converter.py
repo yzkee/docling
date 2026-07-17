@@ -52,6 +52,7 @@ from docling.datamodel.backend_options import (
     LatexBackendOptions,
     MarkdownBackendOptions,
     MetsGbsBackendOptions,
+    MsWordBackendOptions,
     PdfBackendOptions,
     XBRLBackendOptions,
 )
@@ -126,6 +127,7 @@ class ExcelFormatOption(FormatOption):
 class WordFormatOption(FormatOption):
     pipeline_cls: Type = SimplePipeline
     backend: Type[AbstractDocumentBackend] = MsWordDocumentBackend
+    backend_options: Optional[MsWordBackendOptions] = None
 
 
 class PowerpointFormatOption(FormatOption):
