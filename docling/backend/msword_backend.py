@@ -425,6 +425,9 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
         self.listIter = 0
         # Track list counters per numId and ilvl
         self.list_counters: dict[tuple[int, int], int] = {}
+        # numIds already opened in this document. Word numbers continuously
+        # per numId, so a numId that reappears is a resumed list, not a new one
+        self.started_numids: set[int] = set()
         # Track the last numId to handle list continuation after interruptions
         self.last_numid: int | None = None
         # Track the last list group and its parent to reuse only in same context
@@ -2437,6 +2440,15 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
         It determines whether to open a new list, continue an existing one, handle
         indentation changes, or close lists based on the numbering context.
 
+        Contract with interleaved blocks: Word numbers list items continuously
+        per ``w:numId``, so items sharing a numId belong to the same list even
+        when paragraphs of a different numId (for example a bullet list placed
+        between two ordered items) appear in between. Counters are therefore
+        reset only the first time a numId is opened -- tracked in
+        ``self.started_numids`` -- so a numId that reappears after an
+        intervening block resumes its numbering instead of restarting at 1
+        (see #3896).
+
         Args:
             doc: The DoclingDocument being constructed.
             numid: The numbering ID from the DOCX paragraph properties.
@@ -2454,9 +2466,12 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
             self._prev_numid() == numid and self.level_at_new_list is None
         ):  # Open new list
             self.level_at_new_list = level
-            # Only reset counters if this is a truly new list (different numId)
-            if self.last_numid != numid:
+            # Only reset counters the first time a numId is opened. A numId
+            # that reappears after an intervening list of a different numId is
+            # the same Word list resuming, and must keep its numbering.
+            if numid not in self.started_numids:
                 self._reset_list_counters_for_new_sequence(numid)
+                self.started_numids.add(numid)
 
             list_gr = self._get_or_create_list_group(
                 doc=doc,
@@ -2518,9 +2533,12 @@ class MsWordDocumentBackend(DeclarativeDocumentBackend):
                 use_level = level
                 self.level_at_new_list = use_level
 
-            # Only reset counters if this is a different numId
-            if self.last_numid != numid:
+            # Only reset counters the first time a numId is opened. A numId
+            # that reappears after an intervening list of a different numId is
+            # the same Word list resuming, and must keep its numbering.
+            if numid not in self.started_numids:
                 self._reset_list_counters_for_new_sequence(numid)
+                self.started_numids.add(numid)
 
             list_gr = self._get_or_create_list_group(
                 doc=doc,
