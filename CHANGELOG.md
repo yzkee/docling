@@ -1,3 +1,16 @@
+## [v2.119.0](https://github.com/docling-project/docling/releases/tag/v2.119.0) - 2026-08-10
+
+### Feature
+
+* **email:** Add Outlook .msg support and optional attachment listing ([#3873](https://github.com/docling-project/docling/issues/3873)) ([`fad0ee2`](https://github.com/docling-project/docling/commit/fad0ee2532b8378df4f440da6eea9ddca1939de3))
+* **vlm:** Parse Unlimited-OCR grounding output ([#3944](https://github.com/docling-project/docling/issues/3944)) ([`d4e65ef`](https://github.com/docling-project/docling/commit/d4e65ef60285450778bf05fe20a13491736a76aa))
+
+### Fix
+
+* Missing dclx in response ArtifactRef ([#3968](https://github.com/docling-project/docling/issues/3968)) ([`50fcc4d`](https://github.com/docling-project/docling/commit/50fcc4db24bcc2d9cfde117aae068c31cbfc29d9))
+* **asr:** Require whisper-s2t-reborn>=1.7.1 for WhisperS2T correctness fixes ([#3941](https://github.com/docling-project/docling/issues/3941)) ([`8f6ba40`](https://github.com/docling-project/docling/commit/8f6ba40c0db21523c4effcd32cf4eac4ac0c0fbe))
+* **asr:** Handle DocumentStream input in MLX Whisper ([#3885](https://github.com/docling-project/docling/issues/3885)) ([`8050c42`](https://github.com/docling-project/docling/commit/8050c42be2b179504445cb8f3c75655e27cbb662))
+
 ## [v2.118.1](https://github.com/docling-project/docling/releases/tag/v2.118.1) - 2026-08-07
 
 ### Fix
