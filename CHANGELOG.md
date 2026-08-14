@@ -1,3 +1,9 @@
+## [v2.120.1](https://github.com/docling-project/docling/releases/tag/v2.120.1) - 2026-08-14
+
+### Fix
+
+* Update release CI ([#3998](https://github.com/docling-project/docling/issues/3998)) ([`7b3fbb2`](https://github.com/docling-project/docling/commit/7b3fbb25e27afbe6c7f36f36cf8605688d05107a))
+
 ## [v2.120.0](https://github.com/docling-project/docling/releases/tag/v2.120.0) - 2026-08-14
 
 ### Feature
