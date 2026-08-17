@@ -1,3 +1,11 @@
+## [v2.120.2](https://github.com/docling-project/docling/releases/tag/v2.120.2) - 2026-08-17
+
+### Fix
+
+* **service client:** Serialize all the content of the engine options ([#4000](https://github.com/docling-project/docling/issues/4000)) ([`df0dcf6`](https://github.com/docling-project/docling/commit/df0dcf6b4c22c9cd1a0fc685daaef628385ed15e))
+* **docx:** Detect headings by w:outlineLvl when the style is not named "Heading" (#3959) ([#3961](https://github.com/docling-project/docling/issues/3961)) ([`61d76f1`](https://github.com/docling-project/docling/commit/61d76f1ff3f8428065465889f7b4577da7df704c))
+* **md:** Keep the last cell of table rows without a trailing pipe ([#3817](https://github.com/docling-project/docling/issues/3817)) ([`a4a4556`](https://github.com/docling-project/docling/commit/a4a45568228942d785a02da916c284686a505c84))
+
 ## [v2.120.1](https://github.com/docling-project/docling/releases/tag/v2.120.1) - 2026-08-14
 
 ### Fix
