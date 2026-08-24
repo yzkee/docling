@@ -8,8 +8,11 @@ from pathlib import Path
 import numpy as np
 from docling_core.types.doc import BoundingBox, CoordOrigin, Size
 from docling_core.types.doc.page import (
+    BoundingRectangle,
     PdfCellRenderingMode,
+    PdfPageGeometry,
     PdfTextCell,
+    SegmentedPdfPage,
     TextCell,
 )
 from PIL import Image, ImageDraw
@@ -24,6 +27,42 @@ from docling.datamodel.spatial import BoundingBoxSpatialIndex
 from docling.models.base_model import BaseModelWithOptions, BasePageModel
 
 _log = logging.getLogger(__name__)
+
+
+def _empty_segmented_page(page: Page) -> SegmentedPdfPage:
+    """A minimal SegmentedPdfPage for pages whose native parse was skipped
+    (PagePreprocessingOptions.skip_cell_extraction), sized from the page."""
+    width, height = page.size.width, page.size.height
+    # CoordOrigin.BOTTOMLEFT by convention: a real backend produces the
+    # segmented page in bottom-left coordinates.
+    rect = BoundingRectangle(
+        r_x0=0,  # lower-left
+        r_y0=0,
+        r_x1=width,  # lower-right
+        r_y1=0,
+        r_x2=width,  # upper-right
+        r_y2=height,
+        r_x3=0,  # upper-left
+        r_y3=height,
+        coord_origin=CoordOrigin.BOTTOMLEFT,
+    )
+    bbox = BoundingBox(l=0, t=height, r=width, b=0, coord_origin=CoordOrigin.BOTTOMLEFT)
+    return SegmentedPdfPage(
+        dimension=PdfPageGeometry(
+            angle=0.0,
+            rect=rect,
+            boundary_type="crop_box",
+            art_bbox=bbox,
+            bleed_bbox=bbox,
+            crop_bbox=bbox,
+            media_bbox=bbox,
+            trim_bbox=bbox,
+        ),
+        char_cells=[],
+        word_cells=[],
+        textline_cells=[],
+    )
+
 
 try:
     import cv2
@@ -324,7 +363,10 @@ class BaseOcrModel(BasePageModel, BaseModelWithOptions):
         for i, cell in enumerate(final_cells):
             cell.index = i
 
-        assert page.parsed_page is not None
+        if page.parsed_page is None:
+            # No native parse ran (e.g. skip_cell_extraction): create an empty
+            # SegmentedPdfPage so the OCR output has somewhere to live.
+            page.parsed_page = _empty_segmented_page(page)
 
         # Update parsed_page.textline_cells directly
         page.parsed_page.textline_cells = final_cells
