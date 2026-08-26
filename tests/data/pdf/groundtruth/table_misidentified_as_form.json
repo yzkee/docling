@@ -24,25 +24,25 @@
         "$ref": "#/texts/1"
       },
       {
-        "$ref": "#/texts/2"
+        "$ref": "#/pictures/0"
       },
       {
         "$ref": "#/groups/0"
       },
       {
-        "$ref": "#/texts/49"
+        "$ref": "#/texts/58"
       },
       {
-        "$ref": "#/pictures/3"
-      },
-      {
-        "$ref": "#/texts/53"
-      },
-      {
-        "$ref": "#/texts/54"
+        "$ref": "#/texts/59"
       },
       {
         "$ref": "#/groups/5"
+      },
+      {
+        "$ref": "#/texts/60"
+      },
+      {
+        "$ref": "#/texts/61"
       }
     ],
     "content_layer": "body",
@@ -57,7 +57,10 @@
       },
       "children": [
         {
-          "$ref": "#/texts/3"
+          "$ref": "#/texts/5"
+        },
+        {
+          "$ref": "#/texts/6"
         },
         {
           "$ref": "#/groups/1"
@@ -81,18 +84,6 @@
           "$ref": "#/groups/4"
         },
         {
-          "$ref": "#/texts/13"
-        },
-        {
-          "$ref": "#/texts/14"
-        },
-        {
-          "$ref": "#/pictures/0"
-        },
-        {
-          "$ref": "#/texts/15"
-        },
-        {
           "$ref": "#/texts/16"
         },
         {
@@ -100,6 +91,9 @@
         },
         {
           "$ref": "#/texts/18"
+        },
+        {
+          "$ref": "#/pictures/1"
         },
         {
           "$ref": "#/texts/19"
@@ -162,7 +156,7 @@
           "$ref": "#/texts/38"
         },
         {
-          "$ref": "#/pictures/1"
+          "$ref": "#/texts/39"
         },
         {
           "$ref": "#/texts/40"
@@ -180,7 +174,7 @@
           "$ref": "#/texts/44"
         },
         {
-          "$ref": "#/texts/45"
+          "$ref": "#/pictures/2"
         },
         {
           "$ref": "#/texts/46"
@@ -192,7 +186,34 @@
           "$ref": "#/texts/48"
         },
         {
-          "$ref": "#/pictures/2"
+          "$ref": "#/texts/49"
+        },
+        {
+          "$ref": "#/texts/50"
+        },
+        {
+          "$ref": "#/pictures/3"
+        },
+        {
+          "$ref": "#/texts/51"
+        },
+        {
+          "$ref": "#/texts/52"
+        },
+        {
+          "$ref": "#/texts/53"
+        },
+        {
+          "$ref": "#/texts/54"
+        },
+        {
+          "$ref": "#/texts/55"
+        },
+        {
+          "$ref": "#/texts/56"
+        },
+        {
+          "$ref": "#/pictures/4"
         }
       ],
       "content_layer": "body",
@@ -206,7 +227,7 @@
       },
       "children": [
         {
-          "$ref": "#/texts/4"
+          "$ref": "#/texts/7"
         }
       ],
       "content_layer": "body",
@@ -220,15 +241,6 @@
       },
       "children": [
         {
-          "$ref": "#/texts/5"
-        },
-        {
-          "$ref": "#/texts/6"
-        },
-        {
-          "$ref": "#/texts/7"
-        },
-        {
           "$ref": "#/texts/8"
         },
         {
@@ -236,6 +248,15 @@
         },
         {
           "$ref": "#/texts/10"
+        },
+        {
+          "$ref": "#/texts/11"
+        },
+        {
+          "$ref": "#/texts/12"
+        },
+        {
+          "$ref": "#/texts/13"
         }
       ],
       "content_layer": "body",
@@ -249,7 +270,7 @@
       },
       "children": [
         {
-          "$ref": "#/texts/11"
+          "$ref": "#/texts/14"
         }
       ],
       "content_layer": "body",
@@ -263,7 +284,7 @@
       },
       "children": [
         {
-          "$ref": "#/texts/12"
+          "$ref": "#/texts/15"
         }
       ],
       "content_layer": "body",
@@ -275,11 +296,7 @@
       "parent": {
         "$ref": "#/body"
       },
-      "children": [
-        {
-          "$ref": "#/texts/55"
-        }
-      ],
+      "children": [],
       "content_layer": "body",
       "name": "group",
       "label": "key_value_area"
@@ -343,7 +360,88 @@
     {
       "self_ref": "#/texts/2",
       "parent": {
-        "$ref": "#/body"
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 569.33,
+            "t": 762.71,
+            "r": 600.03,
+            "b": 753.34,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "YY",
+      "text": "YY"
+    },
+    {
+      "self_ref": "#/texts/3",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 575.46,
+            "t": 729.31,
+            "r": 587.88,
+            "b": 721.12,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "~!",
+      "text": "~!"
+    },
+    {
+      "self_ref": "#/texts/4",
+      "parent": {
+        "$ref": "#/pictures/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 580.68,
+            "t": 713.85,
+            "r": 586.44,
+            "b": 708.61,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            2
+          ]
+        }
+      ],
+      "orig": "AN",
+      "text": "AN"
+    },
+    {
+      "self_ref": "#/texts/5",
+      "parent": {
+        "$ref": "#/groups/0"
       },
       "children": [],
       "content_layer": "body",
@@ -368,7 +466,7 @@
       "text": "aaaa aaaaaaa aaaaaa aaaaaaaaa aaa aaaaa aAaaaAaAAaaaaaaa AAAAAAAaAaaAa aaaaaaaa"
     },
     {
-      "self_ref": "#/texts/3",
+      "self_ref": "#/texts/6",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -395,7 +493,7 @@
       "text": "aaaa. aaa. # aaa-aa-0000000000  \\."
     },
     {
-      "self_ref": "#/texts/4",
+      "self_ref": "#/texts/7",
       "parent": {
         "$ref": "#/groups/1"
       },
@@ -424,7 +522,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/5",
+      "self_ref": "#/texts/8",
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -453,7 +551,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/6",
+      "self_ref": "#/texts/9",
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -482,7 +580,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/7",
+      "self_ref": "#/texts/10",
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -511,7 +609,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/8",
+      "self_ref": "#/texts/11",
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -540,7 +638,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/9",
+      "self_ref": "#/texts/12",
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -569,7 +667,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/10",
+      "self_ref": "#/texts/13",
       "parent": {
         "$ref": "#/groups/2"
       },
@@ -598,7 +696,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/11",
+      "self_ref": "#/texts/14",
       "parent": {
         "$ref": "#/groups/3"
       },
@@ -627,7 +725,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/12",
+      "self_ref": "#/texts/15",
       "parent": {
         "$ref": "#/groups/4"
       },
@@ -656,7 +754,7 @@
       "marker": ""
     },
     {
-      "self_ref": "#/texts/13",
+      "self_ref": "#/texts/16",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -683,7 +781,7 @@
       "text": "aaaaaaaa"
     },
     {
-      "self_ref": "#/texts/14",
+      "self_ref": "#/texts/17",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -710,7 +808,7 @@
       "text": "aaaaaa:  aaaaa"
     },
     {
-      "self_ref": "#/texts/15",
+      "self_ref": "#/texts/18",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -723,21 +821,48 @@
           "bbox": {
             "l": 52.56,
             "t": 84.31,
-            "r": 513.18,
+            "r": 101.93,
             "b": 65.64,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
             0,
-            68
+            10
           ]
         }
       ],
-      "orig": "Tested By: id  /M Date: If  -7-25 Approved By: D ke Date: WA  OSS 2S",
-      "text": "Tested By: id  /M Date: If  -7-25 Approved By: D ke Date: WA  OSS 2S"
+      "orig": "Tested By:",
+      "text": "Tested By:"
     },
     {
-      "self_ref": "#/texts/16",
+      "self_ref": "#/texts/19",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 118.8,
+            "t": 84.31,
+            "r": 146.71,
+            "b": 65.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            6
+          ]
+        }
+      ],
+      "orig": "id  /M",
+      "text": "id  /M"
+    },
+    {
+      "self_ref": "#/texts/20",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -764,7 +889,34 @@
       "text": "0"
     },
     {
-      "self_ref": "#/texts/17",
+      "self_ref": "#/texts/21",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 187.02,
+            "t": 84.31,
+            "r": 212.08,
+            "b": 65.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Date:",
+      "text": "Date:"
+    },
+    {
+      "self_ref": "#/texts/22",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -791,7 +943,34 @@
       "text": "00"
     },
     {
-      "self_ref": "#/texts/18",
+      "self_ref": "#/texts/23",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 282.6,
+            "t": 84.31,
+            "r": 344.39,
+            "b": 65.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            12
+          ]
+        }
+      ],
+      "orig": "Approved By:",
+      "text": "Approved By:"
+    },
+    {
+      "self_ref": "#/texts/24",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -818,7 +997,7 @@
       "text": "0"
     },
     {
-      "self_ref": "#/texts/19",
+      "self_ref": "#/texts/25",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -829,6 +1008,20 @@
         {
           "page_no": 1,
           "bbox": {
+            "l": 358.92,
+            "t": 84.31,
+            "r": 389.31,
+            "b": 65.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            4
+          ]
+        },
+        {
+          "page_no": 1,
+          "bbox": {
             "l": 460.21,
             "t": 695.58,
             "r": 515.69,
@@ -836,16 +1029,16 @@
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
-            0,
-            10
+            5,
+            15
           ]
         }
       ],
-      "orig": "aaa-aa-000",
-      "text": "aaa-aa-000"
+      "orig": "D ke aaa-aa-000",
+      "text": "D ke aaa-aa-000"
     },
     {
-      "self_ref": "#/texts/20",
+      "self_ref": "#/texts/26",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -872,7 +1065,7 @@
       "text": "aaa-aa-000"
     },
     {
-      "self_ref": "#/texts/21",
+      "self_ref": "#/texts/27",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -899,7 +1092,7 @@
       "text": "aaa-aa-000"
     },
     {
-      "self_ref": "#/texts/22",
+      "self_ref": "#/texts/28",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -926,7 +1119,7 @@
       "text": "aaa-aa-000"
     },
     {
-      "self_ref": "#/texts/23",
+      "self_ref": "#/texts/29",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -953,7 +1146,7 @@
       "text": "aaa-aa-000"
     },
     {
-      "self_ref": "#/texts/24",
+      "self_ref": "#/texts/30",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -980,7 +1173,7 @@
       "text": "/"
     },
     {
-      "self_ref": "#/texts/25",
+      "self_ref": "#/texts/31",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1007,7 +1200,7 @@
       "text": "aaa-aa-000"
     },
     {
-      "self_ref": "#/texts/26",
+      "self_ref": "#/texts/32",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1034,7 +1227,7 @@
       "text": "aaa-da-000"
     },
     {
-      "self_ref": "#/texts/27",
+      "self_ref": "#/texts/33",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1061,7 +1254,7 @@
       "text": "/"
     },
     {
-      "self_ref": "#/texts/28",
+      "self_ref": "#/texts/34",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1088,7 +1281,7 @@
       "text": "7"
     },
     {
-      "self_ref": "#/texts/29",
+      "self_ref": "#/texts/35",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1115,7 +1308,7 @@
       "text": "/"
     },
     {
-      "self_ref": "#/texts/30",
+      "self_ref": "#/texts/36",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1142,7 +1335,7 @@
       "text": "ny"
     },
     {
-      "self_ref": "#/texts/31",
+      "self_ref": "#/texts/37",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1169,7 +1362,7 @@
       "text": "4"
     },
     {
-      "self_ref": "#/texts/32",
+      "self_ref": "#/texts/38",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1196,7 +1389,7 @@
       "text": "P\\s"
     },
     {
-      "self_ref": "#/texts/33",
+      "self_ref": "#/texts/39",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1223,7 +1416,7 @@
       "text": "|"
     },
     {
-      "self_ref": "#/texts/34",
+      "self_ref": "#/texts/40",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1250,7 +1443,7 @@
       "text": "5"
     },
     {
-      "self_ref": "#/texts/35",
+      "self_ref": "#/texts/41",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1277,7 +1470,7 @@
       "text": "KF"
     },
     {
-      "self_ref": "#/texts/36",
+      "self_ref": "#/texts/42",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1304,7 +1497,7 @@
       "text": "p"
     },
     {
-      "self_ref": "#/texts/37",
+      "self_ref": "#/texts/43",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1331,7 +1524,7 @@
       "text": "/"
     },
     {
-      "self_ref": "#/texts/38",
+      "self_ref": "#/texts/44",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1358,9 +1551,9 @@
       "text": "/"
     },
     {
-      "self_ref": "#/texts/39",
+      "self_ref": "#/texts/45",
       "parent": {
-        "$ref": "#/pictures/1"
+        "$ref": "#/pictures/2"
       },
       "children": [],
       "content_layer": "body",
@@ -1385,7 +1578,7 @@
       "text": "F"
     },
     {
-      "self_ref": "#/texts/40",
+      "self_ref": "#/texts/46",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1412,7 +1605,7 @@
       "text": "\u00bb"
     },
     {
-      "self_ref": "#/texts/41",
+      "self_ref": "#/texts/47",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1439,7 +1632,7 @@
       "text": ")"
     },
     {
-      "self_ref": "#/texts/42",
+      "self_ref": "#/texts/48",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1466,7 +1659,7 @@
       "text": "<"
     },
     {
-      "self_ref": "#/texts/43",
+      "self_ref": "#/texts/49",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1493,7 +1686,61 @@
       "text": "~"
     },
     {
-      "self_ref": "#/texts/44",
+      "self_ref": "#/texts/50",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 221.04,
+            "t": 84.31,
+            "r": 273.07,
+            "b": 65.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            9
+          ]
+        }
+      ],
+      "orig": "If  -7-25",
+      "text": "If  -7-25"
+    },
+    {
+      "self_ref": "#/texts/51",
+      "parent": {
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 412.92,
+            "t": 84.31,
+            "r": 437.77,
+            "b": 65.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            5
+          ]
+        }
+      ],
+      "orig": "Date:",
+      "text": "Date:"
+    },
+    {
+      "self_ref": "#/texts/52",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1520,7 +1767,7 @@
       "text": "'"
     },
     {
-      "self_ref": "#/texts/45",
+      "self_ref": "#/texts/53",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1547,7 +1794,7 @@
       "text": "4"
     },
     {
-      "self_ref": "#/texts/46",
+      "self_ref": "#/texts/54",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1574,7 +1821,7 @@
       "text": "VV"
     },
     {
-      "self_ref": "#/texts/47",
+      "self_ref": "#/texts/55",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1601,7 +1848,7 @@
       "text": "V"
     },
     {
-      "self_ref": "#/texts/48",
+      "self_ref": "#/texts/56",
       "parent": {
         "$ref": "#/groups/0"
       },
@@ -1642,7 +1889,34 @@
       "text": "iv, aaa-aa-000"
     },
     {
-      "self_ref": "#/texts/49",
+      "self_ref": "#/texts/57",
+      "parent": {
+        "$ref": "#/pictures/4"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "text",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 447.3,
+            "t": 84.31,
+            "r": 513.18,
+            "b": 65.64,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            10
+          ]
+        }
+      ],
+      "orig": "WA  OSS 2S",
+      "text": "WA  OSS 2S"
+    },
+    {
+      "self_ref": "#/texts/58",
       "parent": {
         "$ref": "#/body"
       },
@@ -1669,115 +1943,7 @@
       "text": "K Medical Corp."
     },
     {
-      "self_ref": "#/texts/50",
-      "parent": {
-        "$ref": "#/pictures/3"
-      },
-      "children": [],
-      "content_layer": "body",
-      "label": "text",
-      "prov": [
-        {
-          "page_no": 1,
-          "bbox": {
-            "l": 569.33,
-            "t": 762.71,
-            "r": 600.03,
-            "b": 753.34,
-            "coord_origin": "BOTTOMLEFT"
-          },
-          "charspan": [
-            0,
-            2
-          ]
-        }
-      ],
-      "orig": "YY",
-      "text": "YY"
-    },
-    {
-      "self_ref": "#/texts/51",
-      "parent": {
-        "$ref": "#/pictures/3"
-      },
-      "children": [],
-      "content_layer": "body",
-      "label": "text",
-      "prov": [
-        {
-          "page_no": 1,
-          "bbox": {
-            "l": 575.46,
-            "t": 729.31,
-            "r": 587.88,
-            "b": 721.12,
-            "coord_origin": "BOTTOMLEFT"
-          },
-          "charspan": [
-            0,
-            2
-          ]
-        }
-      ],
-      "orig": "~!",
-      "text": "~!"
-    },
-    {
-      "self_ref": "#/texts/52",
-      "parent": {
-        "$ref": "#/pictures/3"
-      },
-      "children": [],
-      "content_layer": "body",
-      "label": "text",
-      "prov": [
-        {
-          "page_no": 1,
-          "bbox": {
-            "l": 580.68,
-            "t": 713.85,
-            "r": 586.44,
-            "b": 708.61,
-            "coord_origin": "BOTTOMLEFT"
-          },
-          "charspan": [
-            0,
-            2
-          ]
-        }
-      ],
-      "orig": "AN",
-      "text": "AN"
-    },
-    {
-      "self_ref": "#/texts/53",
-      "parent": {
-        "$ref": "#/body"
-      },
-      "children": [],
-      "content_layer": "body",
-      "label": "text",
-      "prov": [
-        {
-          "page_no": 1,
-          "bbox": {
-            "l": 520.56,
-            "t": 54.54,
-            "r": 570.78,
-            "b": 47.66,
-            "coord_origin": "BOTTOMLEFT"
-          },
-          "charspan": [
-            0,
-            11
-          ]
-        }
-      ],
-      "orig": "Page 3 of 8",
-      "text": "Page 3 of 8"
-    },
-    {
-      "self_ref": "#/texts/54",
+      "self_ref": "#/texts/59",
       "parent": {
         "$ref": "#/body"
       },
@@ -1804,9 +1970,36 @@
       "text": "CONFIDENTIAL"
     },
     {
-      "self_ref": "#/texts/55",
+      "self_ref": "#/texts/60",
       "parent": {
-        "$ref": "#/groups/5"
+        "$ref": "#/body"
+      },
+      "children": [],
+      "content_layer": "furniture",
+      "label": "page_footer",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 520.56,
+            "t": 54.54,
+            "r": 570.78,
+            "b": 47.66,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            11
+          ]
+        }
+      ],
+      "orig": "Page 3 of 8",
+      "text": "Page 3 of 8"
+    },
+    {
+      "self_ref": "#/texts/61",
+      "parent": {
+        "$ref": "#/body"
       },
       "children": [],
       "content_layer": "furniture",
@@ -1835,19 +2028,29 @@
     {
       "self_ref": "#/pictures/0",
       "parent": {
-        "$ref": "#/groups/0"
+        "$ref": "#/body"
       },
-      "children": [],
+      "children": [
+        {
+          "$ref": "#/texts/2"
+        },
+        {
+          "$ref": "#/texts/3"
+        },
+        {
+          "$ref": "#/texts/4"
+        }
+      ],
       "content_layer": "body",
       "label": "picture",
       "prov": [
         {
           "page_no": 1,
           "bbox": {
-            "l": 118.27,
-            "t": 90.54,
-            "r": 144.78,
-            "b": 70.02,
+            "l": 568.45,
+            "t": 765.83,
+            "r": 600.98,
+            "b": 698.96,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
@@ -1866,21 +2069,17 @@
       "parent": {
         "$ref": "#/groups/0"
       },
-      "children": [
-        {
-          "$ref": "#/texts/39"
-        }
-      ],
+      "children": [],
       "content_layer": "body",
       "label": "picture",
       "prov": [
         {
           "page_no": 1,
           "bbox": {
-            "l": 538.31,
-            "t": 162.04,
-            "r": 555.09,
-            "b": 135.17,
+            "l": 118.09,
+            "t": 90.69,
+            "r": 144.83,
+            "b": 69.8,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
@@ -1899,17 +2098,21 @@
       "parent": {
         "$ref": "#/groups/0"
       },
-      "children": [],
+      "children": [
+        {
+          "$ref": "#/texts/45"
+        }
+      ],
       "content_layer": "body",
       "label": "picture",
       "prov": [
         {
           "page_no": 1,
           "bbox": {
-            "l": 445.04,
-            "t": 86.83,
-            "r": 513.92,
-            "b": 68.59,
+            "l": 538.21,
+            "t": 162.03,
+            "r": 555.2,
+            "b": 135.2,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
@@ -1926,17 +2129,40 @@
     {
       "self_ref": "#/pictures/3",
       "parent": {
-        "$ref": "#/body"
+        "$ref": "#/groups/0"
+      },
+      "children": [],
+      "content_layer": "body",
+      "label": "picture",
+      "prov": [
+        {
+          "page_no": 1,
+          "bbox": {
+            "l": 357.96,
+            "t": 89.56,
+            "r": 386.38,
+            "b": 72.02,
+            "coord_origin": "BOTTOMLEFT"
+          },
+          "charspan": [
+            0,
+            0
+          ]
+        }
+      ],
+      "captions": [],
+      "references": [],
+      "footnotes": [],
+      "annotations": []
+    },
+    {
+      "self_ref": "#/pictures/4",
+      "parent": {
+        "$ref": "#/groups/0"
       },
       "children": [
         {
-          "$ref": "#/texts/50"
-        },
-        {
-          "$ref": "#/texts/51"
-        },
-        {
-          "$ref": "#/texts/52"
+          "$ref": "#/texts/57"
         }
       ],
       "content_layer": "body",
@@ -1945,10 +2171,10 @@
         {
           "page_no": 1,
           "bbox": {
-            "l": 568.64,
-            "t": 765.8,
-            "r": 601.01,
-            "b": 699.2,
+            "l": 444.84,
+            "t": 87.04,
+            "r": 513.89,
+            "b": 68.39,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
@@ -1976,10 +2202,10 @@
         {
           "page_no": 1,
           "bbox": {
-            "l": 79.97,
-            "t": 639.45,
-            "r": 437.68,
-            "b": 524.48,
+            "l": 79.07,
+            "t": 639.73,
+            "r": 437.87,
+            "b": 524.4,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
@@ -2635,10 +2861,10 @@
         {
           "page_no": 1,
           "bbox": {
-            "l": 78.46,
+            "l": 77.6,
             "t": 366.3,
-            "r": 435.92,
-            "b": 327.3,
+            "r": 435.74,
+            "b": 327.56,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
@@ -2970,10 +3196,10 @@
         {
           "page_no": 1,
           "bbox": {
-            "l": 79.16,
-            "t": 289.75,
-            "r": 436.61,
-            "b": 212.05,
+            "l": 78.75,
+            "t": 289.79,
+            "r": 436.55,
+            "b": 211.8,
             "coord_origin": "BOTTOMLEFT"
           },
           "charspan": [
