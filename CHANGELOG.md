@@ -1,3 +1,20 @@
+## [v2.123.0](https://github.com/docling-project/docling/releases/tag/v2.123.0) - 2026-08-26
+
+### Feature
+
+* Default to threaded docling-parse across SDK, CLI, service, and extraction ([#3764](https://github.com/docling-project/docling/issues/3764)) ([`feb0f26`](https://github.com/docling-project/docling/commit/feb0f26b7523c84c04aca61962133f6859cbf0f5))
+
+### Fix
+
+* Avoid pipeline option cache key collisions ([#4076](https://github.com/docling-project/docling/issues/4076)) ([`4c28ee6`](https://github.com/docling-project/docling/commit/4c28ee68080cd63964f12a38820a1a145e661996))
+* **csv:** Detect the dialect when a quoted field spans several lines ([#3985](https://github.com/docling-project/docling/issues/3985)) ([`6b7dc94`](https://github.com/docling-project/docling/commit/6b7dc94d6bd4f7db05ea8d3cf9d0999d38b74bac))
+* Improvements (layout element shuffling and allow more strategies) in experimental two-stages pipeline + define base prompt as constant ([#2723](https://github.com/docling-project/docling/issues/2723)) ([`3c77e26`](https://github.com/docling-project/docling/commit/3c77e266bedf5a02f6eef18596e15e28d08ecb4d))
+* **layout:** Nest tables and pictures in form regions ([#4064](https://github.com/docling-project/docling/issues/4064)) ([`aaa4e28`](https://github.com/docling-project/docling/commit/aaa4e28e2278abdac2ec02d0c2df7bf4e3f374b6))
+
+### Documentation
+
+* Add labelstudio to featured integrations ([#4072](https://github.com/docling-project/docling/issues/4072)) ([`6de1318`](https://github.com/docling-project/docling/commit/6de1318e7287101c938a8e0095c800c7d36d3dd6))
+
 ## [v2.122.0](https://github.com/docling-project/docling/releases/tag/v2.122.0) - 2026-08-25
 
 ### Feature
