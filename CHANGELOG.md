@@ -1,3 +1,11 @@
+## [v2.123.1](https://github.com/docling-project/docling/releases/tag/v2.123.1) - 2026-08-28
+
+### Fix
+
+* **vlm:** Preserve spacing for Chandra br tags ([#4092](https://github.com/docling-project/docling/issues/4092)) ([`3a2aca4`](https://github.com/docling-project/docling/commit/3a2aca4322c54dc02a915899df445beefeae889d))
+* **cli:** Defer heavy imports so CLI works on lightweight installs ([#4100](https://github.com/docling-project/docling/issues/4100)) ([`21aa5c9`](https://github.com/docling-project/docling/commit/21aa5c9481e24c75a438e663d156c6e88865e706))
+* **csv:** Drop the UTF-8 BOM instead of keeping it in the first cell ([#4098](https://github.com/docling-project/docling/issues/4098)) ([`0865b9a`](https://github.com/docling-project/docling/commit/0865b9ac05d31547a3399d692749ee50290d7d28))
+
 ## [v2.123.0](https://github.com/docling-project/docling/releases/tag/v2.123.0) - 2026-08-26
 
 ### Feature
