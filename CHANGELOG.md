@@ -1,3 +1,16 @@
+## [v2.124.0](https://github.com/docling-project/docling/releases/tag/v2.124.0) - 2026-08-31
+
+### Feature
+
+* **cli:** Add latex output format ([#4101](https://github.com/docling-project/docling/issues/4101)) ([`c4b0fc7`](https://github.com/docling-project/docling/commit/c4b0fc75af4344aa581765726e73e4d57c36b177))
+* Add terminal task callback event ([#4095](https://github.com/docling-project/docling/issues/4095)) ([`d2283ad`](https://github.com/docling-project/docling/commit/d2283addd8b20d8f27dcf8e5f97b958165cbe7ca))
+
+### Fix
+
+* **service_client:** Handle Retry-After HTTP-date with unknown timezone ([#3786](https://github.com/docling-project/docling/issues/3786)) ([`3bba8da`](https://github.com/docling-project/docling/commit/3bba8da4d27a184293647606808f4269d40f7ff7))
+* Silence transformers generation-config deprecation warning and add max_new_tokens CLI overrides ([#4115](https://github.com/docling-project/docling/issues/4115)) ([`01fc722`](https://github.com/docling-project/docling/commit/01fc72259f5948355c5a6848b337facbfb650a94))
+* Drop the UTF-8 BOM when decoding webvtt, markdown and asciidoc ([#4109](https://github.com/docling-project/docling/issues/4109)) ([`4e34e7b`](https://github.com/docling-project/docling/commit/4e34e7bf7c71a5901f680cfeb5178c46830abbf6))
+
 ## [v2.123.1](https://github.com/docling-project/docling/releases/tag/v2.123.1) - 2026-08-28
 
 ### Fix
