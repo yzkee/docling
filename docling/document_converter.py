@@ -21,6 +21,7 @@ from typing_extensions import Self
 from docling.backend.abstract_backend import (
     AbstractDocumentBackend,
 )
+from docling.backend.afp_backend import AfpDocumentBackend
 from docling.backend.asciidoc_backend import AsciiDocBackend
 from docling.backend.boxnote_backend import BoxNoteDocumentBackend
 from docling.backend.csv_backend import CsvDocumentBackend
@@ -341,6 +342,11 @@ class EbcdicFormatOption(FormatOption):
     backend_options: EbcdicBackendOptions | None = None
 
 
+class AfpFormatOption(FormatOption):
+    pipeline_cls: Type = SimplePipeline
+    backend: Type[AbstractDocumentBackend] = AfpDocumentBackend
+
+
 def _get_default_option(format: InputFormat) -> FormatOption:
     format_to_default_options = {
         InputFormat.CSV: CsvFormatOption(),
@@ -382,6 +388,7 @@ def _get_default_option(format: InputFormat) -> FormatOption:
         InputFormat.EPUB: EpubFormatOption(),
         InputFormat.IWORK_PAGES: IWorkPagesFormatOption(),
         InputFormat.EBCDIC: EbcdicFormatOption(),
+        InputFormat.AFP: AfpFormatOption(),
     }
     if (options := format_to_default_options.get(format)) is not None:
         return options
