@@ -29,6 +29,7 @@ from docling.datamodel.backend_options import AsciiDocBackendOptions
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.document import InputDocument
 from docling.exceptions import DocumentLoadError
+from docling.utils.text_decoding import decode_text
 
 _log = logging.getLogger(__name__)
 
@@ -61,18 +62,16 @@ class AsciiDocBackend(DeclarativeDocumentBackend):
             enable_remote_fetch=options.enable_remote_fetch,
         )
 
-        # utf-8-sig drops a leading BOM. Kept, it prefixes the first line, so a
+        # A leading BOM is dropped. Kept, it prefixes the first line, so a
         # document title ("= Title") is no longer recognized as one and the BOM
-        # reaches the output. Equivalent to utf-8 when no BOM is present.
+        # reaches the output.
         try:
-            if isinstance(self.path_or_stream, BytesIO):
-                text_stream = self.path_or_stream.getvalue().decode("utf-8-sig")
-                self.lines = text_stream.split("\n")
-            if isinstance(self.path_or_stream, Path):
-                with open(self.path_or_stream, encoding="utf-8-sig") as f:
-                    self.lines = f.readlines()
+            self.lines = decode_text(self.path_or_stream, options.encoding).split("\n")
             self.valid = True
 
+        except DocumentLoadError:
+            # Already carries a message naming what could not be decoded.
+            raise
         except Exception as e:
             raise DocumentLoadError(
                 f"Could not initialize AsciiDoc backend for file with hash {self.document_hash}."
