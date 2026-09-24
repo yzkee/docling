@@ -18,6 +18,7 @@ from docling_core.types.doc import (
     GroupLabel,
     ImageRef,
     ListItem,
+    NodeItem,
     TableCell,
     TableData,
     TextItem,
@@ -136,7 +137,7 @@ class AsciiDocBackend(DeclarativeDocumentBackend):
         in_table = False
 
         text_data: list[str] = []
-        table_data: list[str] = []
+        table_data: list[list[str]] = []
         caption_data: list[str] = []
         last_list_item: ListItem | None = None
         list_continuation = False
@@ -284,19 +285,10 @@ class AsciiDocBackend(DeclarativeDocumentBackend):
             elif in_table and (
                 (not self._is_table_line(line)) or line.strip() == "|==="
             ):  # end of table
-                caption = None
-                if len(caption_data) > 0:
-                    caption = doc.add_text(
-                        text=" ".join(caption_data), label=DocItemLabel.CAPTION
-                    )
-
-                caption_data = []
-
-                data = self._populate_table_as_grid(table_data)
-                doc.add_table(
-                    data=data, parent=self._get_current_parent(parents), caption=caption
+                self._add_table_if_nonempty(
+                    doc, table_data, caption_data, self._get_current_parent(parents)
                 )
-
+                caption_data = []
                 in_table = False
                 table_data = []
 
@@ -361,12 +353,10 @@ class AsciiDocBackend(DeclarativeDocumentBackend):
             )
             text_data = []
 
-        if in_table and len(table_data) > 0:
-            data = self._populate_table_as_grid(table_data)
-            doc.add_table(data=data, parent=self._get_current_parent(parents))
-
-            in_table = False
-            table_data = []
+        if in_table:
+            self._add_table_if_nonempty(
+                doc, table_data, caption_data, self._get_current_parent(parents)
+            )
 
         return doc
 
@@ -531,6 +521,25 @@ class AsciiDocBackend(DeclarativeDocumentBackend):
         cells = line.split("|")[1:]
         # Strip whitespace from each cell (empty cells become empty strings)
         return [cell.strip() for cell in cells]
+
+    @staticmethod
+    def _add_table_if_nonempty(
+        doc: DoclingDocument,
+        table_data: list[list[str]],
+        caption_data: list[str],
+        parent: NodeItem | None,
+    ) -> None:
+        if not table_data:
+            return
+
+        caption = None
+        if caption_data:
+            caption = doc.add_text(
+                text=" ".join(caption_data), label=DocItemLabel.CAPTION
+            )
+
+        data = AsciiDocBackend._populate_table_as_grid(table_data)
+        doc.add_table(data=data, parent=parent, caption=caption)
 
     @staticmethod
     def _populate_table_as_grid(table_data):
